@@ -1,0 +1,32 @@
+{
+  "$schema": "https://claude.ai/schemas/settings.json",
+  "description": "Delegation Toolkit - Simplified AI orchestration",
+  "version": "1.0",
+  "mcpServers": {
+    "delegation": {
+      "command": "python3",
+      "args": [".claude/delegation/server.py"],
+      "description": "Routes tasks to Jules, Gemini CLI, QwenAgent, and Perplexity",
+      "tools": [
+        "delegate_code",
+        "delegate_research",
+        "delegation_status",
+        "run_tests"
+      ],
+      "notes": "Requires: pip install fastmcp"
+    }
+  },
+  "environment": {
+    "required": [],
+    "optional": [
+      "DATABASE_URL"
+    ]
+  },
+  "autoCompact": false,
+  "compactionThreshold": null,
+  "notes": [
+    "Use mcp__perplexity-research__* for research (if available globally)",
+    "Use mcp__claude-in-chrome__* for browser automation",
+    "Use delegation tools for code generation routing"
+  ]
+}
