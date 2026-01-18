@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Keywords and patterns for detecting adult content",
+    "usage": "Used by content analyzer to identify scenes requiring review"
+  },
+
+  "categories": {
+    "sexual_content": {
+      "explicit_terms": [
+        "orgasm", "climax", "thrust", "penetrat", "erection",
+        "arousal", "moan", "groan", "naked", "nude", "undress",
+        "strip", "fondle", "caress", "stroke", "grind"
+      ],
+      "body_parts": [
+        "breast", "nipple", "groin", "thigh", "buttock",
+        "genitalia", "manhood", "womanhood"
+      ],
+      "actions": [
+        "kiss passionately", "pressed against", "bodies intertwined",
+        "clothes fell", "fell into bed", "made love", "intimate"
+      ],
+      "intensity_multipliers": {
+        "explicit_terms": 3,
+        "body_parts": 2,
+        "actions": 1.5
+      }
+    },
+
+    "violence_extreme": {
+      "gore_terms": [
+        "entrails", "dismember", "decapitat", "eviscerat",
+        "blood spray", "gore", "mutilat"
+      ],
+      "torture_terms": [
+        "scream in agony", "beg for death", "excruciating",
+        "torture", "torment"
+      ],
+      "intensity_multipliers": {
+        "gore_terms": 3,
+        "torture_terms": 2.5
+      }
+    },
+
+    "intoxication": {
+      "substance_use": [
+        "inject", "snort", "smoke", "drunk", "wasted",
+        "high", "stoned", "trip", "hallucinate"
+      ],
+      "detailed_description": [
+        "needle", "pipe", "bottle", "shot glass", "powder",
+        "pills", "capsule"
+      ],
+      "effects": [
+        "room spinning", "slurred", "stumbled", "passed out",
+        "blackout", "overdose", "vomit"
+      ],
+      "intensity_multipliers": {
+        "substance_use": 1.5,
+        "detailed_description": 2,
+        "effects": 2
+      }
+    }
+  },
+
+  "scene_patterns": {
+    "sexual_scene_start": [
+      "pulled .* close",
+      "lips met",
+      "hands explored",
+      "breath quickened",
+      "eyes locked"
+    ],
+    "sexual_scene_end": [
+      "lay .* afterward",
+      "caught .* breath",
+      "satisfied",
+      "exhausted",
+      "fell asleep"
+    ]
+  },
+
+  "age_thresholds": {
+    "10": {
+      "sexual_content": 0.2,
+      "violence_extreme": 0.3,
+      "intoxication": 0.3
+    },
+    "13": {
+      "sexual_content": 0.4,
+      "violence_extreme": 0.5,
+      "intoxication": 0.4
+    },
+    "15": {
+      "sexual_content": 0.6,
+      "violence_extreme": 0.7,
+      "intoxication": 0.6
+    },
+    "17": {
+      "sexual_content": 0.8,
+      "violence_extreme": 0.85,
+      "intoxication": 0.8
+    }
+  },
+
+  "false_positive_filters": {
+    "medical_context": [
+      "doctor", "hospital", "patient", "nurse", "medical",
+      "diagnosis", "treatment", "surgery"
+    ],
+    "clinical_terms": [
+      "anatomy", "biology", "reproduction", "educational"
+    ],
+    "non_sexual_intimacy": [
+      "hugged", "held hands", "kissed cheek", "embraced warmly"
+    ]
+  }
+}

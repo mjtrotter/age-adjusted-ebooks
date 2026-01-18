@@ -1,0 +1,85 @@
+# Age-Adjusted Ebooks Configuration
+
+# Age tier definitions
+age_tiers:
+  10:
+    name: "Kids"
+    profanity_level: strict      # Filter all profanity
+    content_filter: all          # Filter all adult content
+    description: "Suitable for children 10+"
+
+  13:
+    name: "Tween"
+    profanity_level: moderate    # Filter strong profanity
+    content_filter: explicit     # Filter explicit content
+    description: "Suitable for tweens 13+"
+
+  15:
+    name: "Teen"
+    profanity_level: mild        # Filter severe profanity only
+    content_filter: graphic      # Filter graphic descriptions
+    description: "Suitable for teens 15+"
+
+  17:
+    name: "Mature"
+    profanity_level: minimal     # Filter extreme only
+    content_filter: extreme      # Filter extreme content only
+    description: "Suitable for mature teens 17+"
+
+# LLM Configuration
+llm:
+  # Use local MLX inference by default (no API costs)
+  use_local: true
+  local_url: "http://localhost:8000"
+
+  # Model selection (Qwen3-32B recommended for creative writing)
+  model: "Qwen3-32B"
+
+  # Cloud fallback settings (when use_local: false)
+  provider: anthropic
+  cloud_model: claude-sonnet-4-5-20250929
+
+  max_tokens: 4096
+  temperature: 0.3
+
+  # Context settings
+  context_before: 1500    # Characters before flagged section
+  context_after: 1500     # Characters after flagged section
+
+  # Rate limiting
+  requests_per_minute: 50
+  retry_attempts: 3
+  retry_delay: 2
+
+# Content Analysis
+analysis:
+  # Minimum confidence to flag content
+  profanity_threshold: 0.8
+  adult_content_threshold: 0.7
+
+  # Scene detection
+  min_scene_length: 100       # Minimum chars to consider a scene
+  max_scene_length: 5000      # Maximum scene to process at once
+  merge_distance: 200         # Merge scenes within this distance
+
+# Processing Settings
+processing:
+  batch_size: 5               # Scenes per API batch
+  preserve_formatting: true   # Keep original formatting
+  preserve_chapter_breaks: true
+
+  # Output
+  output_format: epub         # epub, mobi, pdf
+  create_summary: true        # Generate change summary
+
+# Conversion Settings
+conversion:
+  calibre_path: null          # Auto-detect if null
+  temp_dir: null              # System temp if null
+  cleanup_temp: true
+
+# Logging
+logging:
+  level: INFO
+  file: logs/processing.log
+  console: true

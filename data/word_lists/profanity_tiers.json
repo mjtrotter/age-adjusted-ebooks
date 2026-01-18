@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Age-tiered profanity word lists with replacements",
+    "note": "Higher tiers include all words from lower tiers"
+  },
+
+  "tiers": {
+    "tier_10_mild": {
+      "description": "Mild words filtered for 10+ (all ages)",
+      "words": {
+        "damn": ["darn", "dang"],
+        "hell": ["heck"],
+        "ass": ["butt", "rear"],
+        "crap": ["crud", "junk"],
+        "piss": ["ticked", "annoyed"],
+        "pissed": ["ticked off", "annoyed"],
+        "suck": ["stink", "bad"],
+        "sucks": ["stinks", "is bad"],
+        "God damn": ["gosh darn"],
+        "goddamn": ["gosh darn"]
+      }
+    },
+
+    "tier_13_moderate": {
+      "description": "Moderate words filtered for 13+ (includes tier_10)",
+      "words": {
+        "shit": ["crap", "crud"],
+        "bullshit": ["nonsense", "garbage"],
+        "bitch": ["jerk", "witch"],
+        "bastard": ["jerk", "scoundrel"],
+        "son of a bitch": ["son of a gun"],
+        "badass": ["tough", "cool"],
+        "dumbass": ["fool", "idiot"],
+        "jackass": ["fool", "jerk"],
+        "asshole": ["jerk", "creep"],
+        "whore": ["harlot", "loose woman"]
+      }
+    },
+
+    "tier_15_strong": {
+      "description": "Strong words filtered for 15+ (includes tier_13)",
+      "words": {
+        "fuck": ["screw", "damn"],
+        "fucking": ["freaking", "damned"],
+        "fucked": ["screwed", "messed up"],
+        "fucker": ["jerk", "creep"],
+        "motherfucker": ["scumbag", "creep"],
+        "cock": ["member", "manhood"],
+        "dick": ["jerk", "member"],
+        "pussy": ["coward", "private area"],
+        "cunt": ["awful person", "jerk"],
+        "tits": ["chest", "breasts"],
+        "boobs": ["chest", "breasts"]
+      }
+    },
+
+    "tier_17_extreme": {
+      "description": "Extreme words filtered only for 17+ (includes tier_15)",
+      "words": {
+        "note": "This tier contains slurs and extreme language",
+        "racial_slurs": "FILTERED",
+        "ethnic_slurs": "FILTERED",
+        "homophobic_slurs": "FILTERED"
+      }
+    }
+  },
+
+  "context_sensitive": {
+    "description": "Words that need context to determine filtering",
+    "words": {
+      "ass": {
+        "animal": false,
+        "body_part": true,
+        "insult": true
+      },
+      "cock": {
+        "rooster": false,
+        "body_part": true
+      },
+      "screw": {
+        "fastener": false,
+        "sexual": true,
+        "angry": true
+      }
+    }
+  },
+
+  "replacement_rules": {
+    "maintain_intensity": true,
+    "match_syllables": false,
+    "preserve_sentence_structure": true,
+    "use_context_for_selection": true
+  }
+}

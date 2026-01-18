@@ -1,0 +1,100 @@
+# LLM Prompt Templates for Content Replacement
+
+## STYLE_ANALYSIS_PROMPT
+Analyze the following text excerpt and describe the author's writing style:
+
+TEXT:
+{text_sample}
+
+Provide analysis of:
+1. Sentence structure (simple/complex, length patterns)
+2. Vocabulary level (basic/intermediate/advanced)
+3. Tone (formal/casual, serious/light)
+4. Point of view and tense
+5. Any distinctive stylistic elements
+
+Format as JSON with these keys: sentence_structure, vocabulary_level, tone, pov_tense, distinctive_elements
+
+---
+
+## CONTENT_REPLACEMENT_PROMPT
+You are helping create an age-appropriate version of a book for readers age {target_age}+.
+
+CONTEXT BEFORE:
+{context_before}
+
+CONTENT TO REPLACE (flagged as {content_type}):
+{flagged_content}
+
+CONTEXT AFTER:
+{context_after}
+
+AUTHOR STYLE:
+{style_analysis}
+
+INSTRUCTIONS:
+1. The event/scene MUST still occur - do not remove plot points
+2. Replace explicit/graphic details with tasteful, age-appropriate descriptions
+3. Maintain the emotional impact and character development
+4. Match the author's writing style exactly (vocabulary, sentence structure, tone)
+5. Ensure smooth transitions with surrounding text
+6. Keep approximately the same length (within 20%)
+
+For age {target_age}+:
+- Sexual content: Acknowledge intimacy occurred, skip graphic physical details
+- Violence: Show consequences without gratuitous gore
+- Intoxication: Note impairment without glorifying substance details
+
+Write ONLY the replacement text, no explanations.
+
+---
+
+## CONTINUITY_CHECK_PROMPT
+Review this text transition for continuity:
+
+BEFORE REPLACEMENT:
+{text_before}
+
+REPLACEMENT:
+{replacement}
+
+AFTER REPLACEMENT:
+{text_after}
+
+Check for:
+1. Logical flow between sections
+2. Consistent character names and pronouns
+3. Maintained timeline
+4. No contradictions
+5. Natural transitions
+
+Return JSON:
+{
+  "continuity_valid": true/false,
+  "issues": ["list of any issues found"],
+  "suggested_fixes": ["specific fixes if needed"]
+}
+
+---
+
+## BATCH_REPLACEMENT_PROMPT
+Process multiple content replacements for age {target_age}+ version.
+
+AUTHOR STYLE REFERENCE:
+{style_analysis}
+
+REPLACEMENTS NEEDED:
+{replacement_tasks}
+
+For each task:
+1. Maintain plot continuity
+2. Match author style
+3. Use age-appropriate detail level
+
+Return JSON array:
+[
+  {
+    "task_id": "id",
+    "replacement": "replacement text"
+  }
+]
